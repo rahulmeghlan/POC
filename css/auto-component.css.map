@@ -1,0 +1,9 @@
+{
+	"version": 3,
+	"file": "auto-component.css",
+	"sources": [
+		"../scss/auto-component.scss"
+	],
+	"names": [],
+	"mappings": "AAAA,AAAA,aAAa,CAAC;EACZ,MAAM,EAAE,MAAM,GACf;;AAED,AAAA,UAAU,CAAC;EACT,MAAM,EAAE,SAAS,GAClB"
+}

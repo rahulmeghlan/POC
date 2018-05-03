@@ -1,0 +1,24 @@
+{
+  "name": "MachineLedger",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build-task:scss-compile": "node-sass-chokidar --source-map true scss/ -o css",
+    "build-task:autoprefixer": "postcss css/*.css --use autoprefixer -d css",
+    "sass:build": "npm-run-all -p build-task:*",
+    "sass:watch": "chokidar \"scss/*.scss\" -c \"npm run sass:build\"",
+    "dev": "npm-run-all -p sass:*"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "autoprefixer": "^8.2.0",
+    "chokidar-cli": "^1.2.0",
+    "node-sass-chokidar": "^1.2.2",
+    "npm-run-all": "^4.1.2",
+    "postcss-cli": "^5.0.0"
+  }
+}

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Component</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+          integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/auto-component.css"/>
+</head>
+<body>
+<div class="container" ng-app="app">
+    <typeahead style="display: block;"></typeahead>
+    <!--<add-component></add-component>-->
+</div>
+<!--<div id="the-basics">
+    <input class="typeahead" type="text" placeholder="Search">
+</div>-->
+<script src="jquery-3.3.1.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<!--<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.bundle.min.js"></script>-->
+<script src="handlebars-v4.0.11.js"></script>
+<script src="typeahead/typeahead.jquery.js"></script>
+<script src="app-module.js"></script>
+<script src="directives/typeahead.directive.js"></script>
+<!--<script src="add-component.js"></script>-->
+<script>
+    $(function () {
+        let list = [{name: 'Plugin 1', sa: 'Sub Assembly 1'},
+            {name: 'Another Plugin', sa: 'Sub Assembly 1'}];
+
+        function substringMatcher(strs) {
+            return function findMatches(q, cb) {
+                let matches, substrRegex;
+
+                // an array that will be populated with substring matches
+                matches = [];
+
+                // regex used to determine if a string contains the substring `q`
+                substrRegex = new RegExp(q, 'i');
+
+                // iterate through the pool of strings and for any string that
+                // contains the substring `q`, add it to the `matches` array
+                $.each(strs, function (i, str) {
+                    if (substrRegex.test(str.name)) {
+                        matches.push(str);
+                    }
+                });
+
+                cb(matches);
+            };
+        }
+
+        $('#the-basics .typeahead').typeahead({
+                hint: true,
+                highlight: true,
+                minLength: 1
+            },
+            {
+                name: 'states',
+                source: substringMatcher(list),
+                templates: {
+                    suggestion: Handlebars.compile('<div class="btr-suggestion"><p><span class="name">{{name}}</span>  <span class="sub-assembly">{{sa}}</span></p></div>')
+                }
+            });
+    })
+</script>
+</body>
+</html>
